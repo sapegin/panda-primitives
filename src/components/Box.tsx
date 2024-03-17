@@ -38,6 +38,7 @@ export function BoxRaw<C extends ElementType>({
 }
 
 // XXX: forwareRef kills the types so we readd them back
+// https://stackoverflow.com/a/58473012/1973105
 export const Box = forwardRef(BoxRaw) as <
   C extends ElementType = 'div'
 >(
