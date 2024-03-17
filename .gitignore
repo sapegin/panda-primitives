@@ -9,3 +9,7 @@ Thumbs.db
 *.log
 .eslintcache
 .env
+
+## Panda
+styled-system
+styled-system-studio
