@@ -5,28 +5,32 @@ import {
   type Ref,
   type ReactElement
 } from 'react';
-// @ts-expect-error: Doesn't come with types ;-(
+// @ts-expect-error: Doesn't come with types
 import { splitProps } from '../../styled-system/helpers';
 import {
   styled,
   type HTMLStyledProps
 } from '../../styled-system/jsx';
-import { box } from '../../styled-system/patterns/box';
+import {
+  stack,
+  type StackProperties
+} from '../../styled-system/patterns/stack';
 
 type AsProp<C extends ElementType> = {
   as?: C;
 };
 
-export type BoxProps<C extends ElementType> = HTMLStyledProps<C> &
-  AsProp<C>;
+export type StackProps<C extends ElementType> = AsProp<C> &
+  StackProperties &
+  HTMLStyledProps<C>;
 
-function BoxRaw<C extends ElementType>({
+function StackRaw<C extends ElementType>({
   as,
   ...props
-}: BoxProps<C>) {
+}: StackProps<C>) {
   const [patternProps, restProps] = splitProps(props, []);
 
-  const styleProps = box.raw(patternProps);
+  const styleProps = stack.raw(patternProps);
   const mergedProps = { ...styleProps, ...restProps };
 
   return createElement(styled(as ?? 'div'), mergedProps);
@@ -34,8 +38,8 @@ function BoxRaw<C extends ElementType>({
 
 // XXX: forwardRef kills the types so we readd them back
 // https://stackoverflow.com/a/58473012/1973105
-export const Box = forwardRef(BoxRaw) as <
+export const Stack = forwardRef(StackRaw) as <
   C extends ElementType = 'div'
 >(
-  props: BoxProps<C> & { ref?: Ref<C> }
+  props: StackProps<C> & { ref?: Ref<C> }
 ) => ReactElement;

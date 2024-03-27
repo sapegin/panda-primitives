@@ -1,12 +1,30 @@
 import { defineConfig } from '@pandacss/dev';
+import base from '@pandacss/preset-base';
 
 export default defineConfig({
+  // Opt out of all default
+  eject: true,
+
+  // Output directory
+  outdir: 'styled-system',
+
+  // Generate React components based on patterns
   jsxFramework: 'react',
 
-  // TODO: Remove default patterns by including only utilities and conditions from base preset
-  presets: ['@pandacss/preset-base'],
+  // Include CSS reset
+  preflight: true,
 
-  // TODO: Add more: https://github.com/chakra-ui/panda/blob/main/packages/preset-base/src/patterns.ts
+  // Where to look for CSS declarations
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+
+  // Files to exclude
+  exclude: [],
+
+  // Include utilities and conditions from the base preset
+  utilities: base.utilities,
+  conditions: base.conditions,
+
+  // Patterns
   patterns: {
     box: {
       transform(props) {
@@ -36,17 +54,16 @@ export default defineConfig({
           ...rest
         };
       }
+    },
+    visuallyHidden: {
+      transform(props) {
+        return {
+          srOnly: true,
+          ...props
+        };
+      }
     }
   },
-
-  // Include CSS reset
-  preflight: true,
-
-  // Where to look for CSS declarations
-  include: ['./src/**/*.{js,jsx,ts,tsx}'],
-
-  // Files to exclude
-  exclude: [],
 
   // Project theme
   theme: {
@@ -98,7 +115,7 @@ export default defineConfig({
       borders: {
         none: { value: 'none' },
         thin: { value: '1px solid' },
-        focus: { value: '3px solid' }
+        focus: { value: '3px solid {colors.accent}' }
       },
       radii: {
         none: { value: '0' },
@@ -106,8 +123,5 @@ export default defineConfig({
         round: { value: '99999em' }
       }
     }
-  },
-
-  // Output directory
-  outdir: 'styled-system'
+  }
 });

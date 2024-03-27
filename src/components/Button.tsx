@@ -56,12 +56,11 @@ export const Button = ({ variant, ...props }: ButtonProps) => (
         backgroundColor: 'accent',
         cursor: 'pointer'
       },
-      '&:focus': {
+      '_focusVisible': {
         outline: 'focus',
-        outlineColor: 'accent',
         outlineOffset: 2
       },
-      '&:disabled': {
+      '_disabled': {
         opacity: 0.6,
         filter: 'saturate(60%)'
       }

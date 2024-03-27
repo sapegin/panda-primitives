@@ -1,8 +1,7 @@
+import { type InputHTMLAttributes } from 'react';
 import { Box } from './Box';
 
-// TODO: Implement focus rings
-
-type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = (props: InputProps) => (
   <Box
@@ -23,10 +22,8 @@ export const Input = (props: InputProps) => (
       color: 'text',
       backgroundColor: 'background',
       boxShadow: 'none',
-      _focus: {
-        // TODO: Doesn't pick it up from theme.borders
+      _focusVisible: {
         outline: 'focus',
-        outlineColor: 'accent',
         outlineOffset: 2
       },
       _disabled: {
