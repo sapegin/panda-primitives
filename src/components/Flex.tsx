@@ -12,10 +12,7 @@ import {
   type HTMLStyledProps
 } from '../../styled-system/jsx';
 import { flex } from '../../styled-system/patterns/flex';
-
-type AsProp<C extends ElementType> = {
-  as?: C;
-};
+import { AsProp } from './Box';
 
 export type FlexProps<C extends ElementType> = HTMLStyledProps<C> &
   AsProp<C>;

@@ -6,6 +6,7 @@ import { Box } from './Box';
 
 const button = cva({
   base: {
+    display: 'inline-block',
     width: '100%',
     height: '2rem',
     px: 'm',
@@ -16,8 +17,6 @@ const button = cva({
     fontSize: 'm',
     fontFamily: 'body',
     textDecoration: 'none',
-    boxSizing: 'border-box',
-    display: 'inline-block',
     textAlign: 'center'
   },
   variants: {
@@ -34,36 +33,37 @@ const button = cva({
   }
 });
 
-// TODO: Implement focus rings
-
 type ButtonVariants = RecipeVariantProps<typeof button>;
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   ButtonVariants;
 
-// TODO: See if we can (should?) use built-in conditions, like 'hover'
-
-export const Button = ({ variant, ...props }: ButtonProps) => (
-  <Box
-    as="button"
-    className={button({ variant })}
-    {...props}
-    css={{
-      '&:hover:not(:disabled), &:active:not(:disabled)': {
-        outline: 0,
-        color: 'background',
-        borderColor: 'accent',
-        backgroundColor: 'accent',
-        cursor: 'pointer'
-      },
-      '_focusVisible': {
-        outline: 'focus',
-        outlineOffset: 2
-      },
-      '_disabled': {
-        opacity: 0.6,
-        filter: 'saturate(60%)'
-      }
-    }}
-  />
-);
+export function Button({
+  variant = 'secondary',
+  ...props
+}: ButtonProps) {
+  return (
+    <Box
+      as="button"
+      className={button({ variant })}
+      {...props}
+      css={{
+        '&:hover:not(:disabled)': {
+          outline: 0,
+          color: 'background',
+          borderColor: 'accent',
+          backgroundColor: 'accent',
+          cursor: 'pointer'
+        },
+        _focusVisible: {
+          outline: 'focus',
+          outlineOffset: 2
+        },
+        _disabled: {
+          opacity: 0.6,
+          filter: 'saturate(60%)'
+        }
+      }}
+    />
+  );
+}

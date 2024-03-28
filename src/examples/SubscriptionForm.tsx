@@ -8,7 +8,7 @@ import { Input } from '../components/Input';
 
 export function SubscriptionForm() {
   return (
-    <Flex as="form" bg="salmon">
+    <Flex as="form">
       <Box flexGrow={1}>
         <Input
           type="email"
@@ -18,7 +18,7 @@ export function SubscriptionForm() {
           aria-label="Email"
         />
       </Box>
-      <Box pl="s" bg="blue">
+      <Box pl="s">
         <Button type="submit" variant="primary">
           Subscribe
         </Button>

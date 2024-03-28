@@ -13,7 +13,7 @@ import {
 } from '../../styled-system/jsx';
 import { box } from '../../styled-system/patterns/box';
 
-type AsProp<C extends ElementType> = {
+export type AsProp<C extends ElementType> = {
   as?: C;
 };
 
