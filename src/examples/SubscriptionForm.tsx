@@ -1,14 +1,15 @@
 import { Box } from '../components/Box';
-import { Flex } from '../components/Flex';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-
-// TODO: Flex -> Stack
-// TODO: Make it responsive
+import { Stack } from '../components/Stack';
 
 export function SubscriptionForm() {
   return (
-    <Flex as="form">
+    <Stack
+      as="form"
+      direction={{ base: 'column', tablet: 'row' }}
+      gap="s"
+    >
       <Box flexGrow={1}>
         <Input
           type="email"
@@ -18,11 +19,11 @@ export function SubscriptionForm() {
           aria-label="Email"
         />
       </Box>
-      <Box pl="s">
+      <Box>
         <Button type="submit" variant="primary">
           Subscribe
         </Button>
       </Box>
-    </Flex>
+    </Stack>
   );
 }

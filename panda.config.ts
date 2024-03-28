@@ -20,53 +20,15 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  // Include utilities and conditions from the base preset
-  utilities: base.utilities,
-  conditions: base.conditions,
-
-  // Patterns
-  patterns: {
-    box: {
-      transform(props) {
-        return props;
-      }
-    },
-    flex: {
-      transform(props) {
-        return {
-          display: 'flex',
-          ...props
-        };
-      }
-    },
-    stack: {
-      properties: {
-        direction: { type: 'property', value: 'flexDirection' }
-      },
-      defaultValues: {
-        direction: 'column'
-      },
-      transform(props) {
-        const { direction, ...rest } = props;
-        return {
-          display: 'flex',
-          flexDirection: direction,
-          ...rest
-        };
-      }
-    },
-    visuallyHidden: {
-      transform(props) {
-        return {
-          srOnly: true,
-          ...props
-        };
-      }
-    }
-  },
-
   // Project theme
   theme: {
+    // Mobile first breakpoints
+    breakpoints: {
+      // 'base': < 768px
+      tablet: '48rem', // >= 768px
+      desktop: '62rem' // >= 992px
+    },
+    // Design tokens
     tokens: {
       colors: {
         text: { value: '#333' },
@@ -123,5 +85,55 @@ export default defineConfig({
         round: { value: '99999em' }
       }
     }
-  }
+  },
+
+  // Conditions
+  conditions: {
+    ...base.conditions,
+    hover: '&:hover:not(:disabled)'
+  },
+
+  // Patterns
+  patterns: {
+    box: {
+      transform(props) {
+        return props;
+      }
+    },
+    flex: {
+      transform(props) {
+        return {
+          display: 'flex',
+          ...props
+        };
+      }
+    },
+    stack: {
+      properties: {
+        direction: { type: 'property', value: 'flexDirection' }
+      },
+      defaultValues: {
+        direction: 'column'
+      },
+      transform(props) {
+        const { direction, ...rest } = props;
+        return {
+          display: 'flex',
+          flexDirection: direction,
+          ...rest
+        };
+      }
+    },
+    visuallyHidden: {
+      transform(props) {
+        return {
+          srOnly: true,
+          ...props
+        };
+      }
+    }
+  },
+
+  // Include utilities from the base preset
+  utilities: base.utilities
 });
