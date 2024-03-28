@@ -28,7 +28,7 @@ function StackRaw<C extends ElementType>({
   as,
   ...props
 }: StackProps<C>) {
-  const [patternProps, restProps] = splitProps(props, []);
+  const [patternProps, restProps] = splitProps(props, ['direction']);
 
   const styleProps = stack.raw(patternProps);
   const mergedProps = { ...styleProps, ...restProps };
