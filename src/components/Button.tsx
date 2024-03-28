@@ -48,7 +48,7 @@ export function Button({
       className={button({ variant })}
       {...props}
       css={{
-        '&:hover:not(:disabled)': {
+        _hover: {
           outline: 0,
           color: 'background',
           borderColor: 'accent',
